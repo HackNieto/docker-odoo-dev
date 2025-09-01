@@ -32,4 +32,6 @@ services:
       - pgdb-data:/var/lib/postgresql/data/pgdata
 volumes:
   odoo-web-data:
+    name: ${COMPOSE_PROJECT_NAME}_odoo-web-data
   pgdb-data:
+    name: ${COMPOSE_PROJECT_NAME}_pgdb-data
