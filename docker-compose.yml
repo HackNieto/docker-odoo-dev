@@ -14,7 +14,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ${ODOO_SERVER}:/var/lib/odoo/odoo
       - ${CUSTOM_ADDONS}:/var/lib/odoo/custom_addons
-    enviroment:
+    environment:
       - DEBUGPY=true
       - DEBUGPY_PORT=${DEBUGPY_PORT}
       - DEBUGPY_AUX_PORT=${DEBUGPY_AUX_PORT}
