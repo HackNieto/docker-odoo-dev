@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: ${ODOO_CONTAINER_NAME}
+    container_name: ${COMPOSE_PROJECT_NAME}-${ODOO_CONTAINER_NAME}
     image: odoodev:${ODOO_VERSION}
     # Comandos de odoo (actualizar, instalar, herramientas, etc)
     # command: odoo -u <module_name> -d <database_name> --dev=xml,qweb,reload
@@ -19,7 +19,7 @@ services:
       - DEBUGPY_PORT=${DEBUGPY_PORT}
       - DEBUGPY_AUX_PORT=${DEBUGPY_AUX_PORT}
   db:
-    container_name: ${PG_CONTAINER_NAME}
+    container_name: ${COMPOSE_PROJECT_NAME}-${PG_CONTAINER_NAME}
     image: postgres:${PG_VERSION}
     environment:
       - POSTGRES_DB=postgres
