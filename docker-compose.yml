@@ -15,9 +15,20 @@ services:
       - ${ODOO_SERVER}:/var/lib/odoo/odoo
       - ${CUSTOM_ADDONS}:/var/lib/odoo/custom_addons
     environment:
+      # Debugpy
       - DEBUGPY=true
       - DEBUGPY_PORT=${DEBUGPY_PORT}
       - DEBUGPY_AUX_PORT=${DEBUGPY_AUX_PORT}
+      - DEBUGPY_WAIT=0  # No esperar (cambiar a 1 si quieres que espere)
+
+      # Variables para mejorar compatibilidad
+      - PYDEVD_DISABLE_FILE_VALIDATION=1
+      - PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT=10
+
+      # Base de datos para reconectar tras reloader
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
   db:
     container_name: ${COMPOSE_PROJECT_NAME}-${PG_CONTAINER_NAME}
     image: postgres:${PG_VERSION}
